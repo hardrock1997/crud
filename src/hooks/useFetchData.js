@@ -1,14 +1,24 @@
 import {useEffect,useState} from 'react';
 import { URL } from '../util/constants';
 export default function useFetchData() {
-    const [employeesData,setEmployeesData] = useState();
-    const [employeesDataCopy,setEmployeesDataCopy] = useState();
+  
+    const [employeesData,setEmployeesData] = useState([]);
+    const [employeesDataCopy,setEmployeesDataCopy] = useState([]);
+    function putIsEditProp(data) {
+       const newData=data.map((val)=>{
+            return (
+                {...val,isEdit:false}
+            )
+        })
+        return newData;
+    }
     useEffect(()=>{
        async function fetchData() {
             const response=await fetch(URL);
             const data=await response.json();
-            setEmployeesData(data);
-            setEmployeesDataCopy(data);
+            const newData=putIsEditProp(data);
+            setEmployeesData(newData);
+            setEmployeesDataCopy(newData);
        }
        fetchData();
     },[])

@@ -5,7 +5,8 @@ export default function AddData({setEmployeesData,setEmployeesDataCopy}) {
     const [val,setVal]=useState({
         firstName:'',
         lastName:'',
-        email:''
+        email:'',
+        isEdit:false
     });
 
     const [id,setId] = useState(1011);
@@ -16,10 +17,10 @@ export default function AddData({setEmployeesData,setEmployeesDataCopy}) {
     function addData(e) {
 
         setEmployeesData((prev)=>
-          [...prev,{id:id,firstName:val.firstName,lastName:val.lastName,email:val.email}]
+          [...prev,{id:id,firstName:val.firstName,lastName:val.lastName,email:val.email,isEdit:false}]
         );
         setEmployeesDataCopy((prev)=>
-        [...prev,{id:id,firstName:val.firstName,lastName:val.lastName,email:val.email}]
+        [...prev,{id:id,firstName:val.firstName,lastName:val.lastName,email:val.email,isEdit:false}]
         );
         setId((prev)=>prev+1);
 

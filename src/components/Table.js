@@ -1,9 +1,11 @@
 import styles from '../components/Table.module.css';
 import ActionButtons from './ActionButtons';
-import React from 'react';
+import Edit from './Edit';
+import React, { useState } from 'react';
 
 export default function Table({data,dataCopy,setEmployeesData,setEmployeesDataCopy}) {
  
+    const [dataToEdit,setDataToEdit]=useState({});
     function deleteEmployee(id) {
         const afterDeletion = dataCopy.filter((val)=>{
             return val.id!==id;
@@ -12,6 +14,18 @@ export default function Table({data,dataCopy,setEmployeesData,setEmployeesDataCo
         setEmployeesData(afterDeletion);
 
     }
+    function editEmployeeData(id) {
+        const toEditRow=data.find((val)=>val.id===id);
+        toEditRow.isEdit=true;
+        const newData=data.map((val)=>{
+            if(val.id===id) return toEditRow;
+            else return val;
+        })
+        setDataToEdit(toEditRow);
+        setEmployeesData(newData);
+        setEmployeesDataCopy(newData);
+    }
+  
     return (
         <div>
             <table className={styles.table}>
@@ -26,13 +40,16 @@ export default function Table({data,dataCopy,setEmployeesData,setEmployeesDataCo
                         data && data.map((val)=>{
                             return (
                                 <React.Fragment key={val.id}>
-                                <tr>
+                                {
+                                    val.isEdit===false ? (
+                                    <tr>
                                     <td>{val.firstName}</td>
                                     <td>{val.lastName}</td>
                                     <td>{val.email}</td>
-                                    <td><ActionButtons id={val.id} deleteEmployee={deleteEmployee}/></td>
-                                </tr>
-                                
+                                    <td><ActionButtons id={val.id} deleteEmployee={deleteEmployee} editEmployeeData={editEmployeeData} isEdit={val.isEdit}/></td>
+                                   </tr>
+                                    ) : <Edit setEmployeesData={setEmployeesData} isEdit={val.isEdit} setEmployeesDataCopy={setEmployeesDataCopy} data={data} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit} id={val.id}/>
+                                }
                                 </React.Fragment>
                             )
                         })
