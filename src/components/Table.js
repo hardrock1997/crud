@@ -39,16 +39,16 @@ export default function Table({data,dataCopy,setEmployeesData,setEmployeesDataCo
                     {
                         data && data.map((val)=>{
                             return (
-                                <React.Fragment key={val.id}>
+                                <React.Fragment >
                                 {
                                     val.isEdit===false ? (
-                                    <tr>
+                                    <tr key={val.id}>
                                     <td>{val.firstName}</td>
                                     <td>{val.lastName}</td>
                                     <td>{val.email}</td>
                                     <td><ActionButtons id={val.id} deleteEmployee={deleteEmployee} editEmployeeData={editEmployeeData} isEdit={val.isEdit}/></td>
                                    </tr>
-                                    ) : <Edit setEmployeesData={setEmployeesData} isEdit={val.isEdit} setEmployeesDataCopy={setEmployeesDataCopy} data={data} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit} id={val.id}/>
+                                    ) : <Edit key={val.id} setEmployeesData={setEmployeesData} isEdit={val.isEdit} setEmployeesDataCopy={setEmployeesDataCopy} data={data} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit} id={val.id}/>
                                 }
                                 </React.Fragment>
                             )
