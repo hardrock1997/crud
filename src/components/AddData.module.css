@@ -14,7 +14,7 @@
     display: block;
     width: 80px;
     height: 30px;
-    background-color: black;
+    background-color: green;
     color: white;
 }
 button:hover{
@@ -22,6 +22,6 @@ button:hover{
 }
 .button {
     display: flex;
-    justify-content: center;
-    margin-top: 5px;
+    justify-content: space-evenly;
+    margin-top: 10px;
 }

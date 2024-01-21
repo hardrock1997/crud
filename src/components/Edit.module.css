@@ -31,13 +31,13 @@
 .save {
     width: 80px;
     height: 30px;
-    background-color: black;
+    background-color:green;
     color: white;
 }
 .cancel{
     width: 80px;
     height: 30px;
-    background-color: black;
+    background-color:green;
     color: white;
 }
 button:hover{

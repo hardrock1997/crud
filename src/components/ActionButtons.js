@@ -1,5 +1,5 @@
 import styles from '../components/ActionButtons.module.css';
-export default function ActionButtons({id,deleteEmployee,editEmployeeData,isEdit}) {
+export default function ActionButtons({id,deleteEmployee,editEmployeeData}) {
     return (
         <div className={styles.buttons}>
             <button className={styles.edit} onClick={()=>editEmployeeData(id)}>Edit</button>
